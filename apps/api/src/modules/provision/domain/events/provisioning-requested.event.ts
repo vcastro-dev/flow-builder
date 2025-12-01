@@ -1,17 +1,27 @@
 import type { Blueprint } from "../entity/blueprint.entity.js";
 
-export type ProvisioningRequested = {
-  readonly name: "ProvisioningRequested";
-  readonly data: Blueprint;
-};
+const PROVISIONING_REQUESTED_EVENT_NAME = "ProvisioningRequested";
+
+type ProvisioningRequested = Readonly<{
+  name: typeof PROVISIONING_REQUESTED_EVENT_NAME;
+  data: Blueprint;
+}>;
 
 export const isProvisioningRequested = (
   event: unknown
 ): event is ProvisioningRequested => {
+  if (typeof event === "object" && event !== null) return false;
   return (
-    typeof event === "object" &&
-    event !== null &&
-    "name" in event &&
-    "data" in event
+    (event as ProvisioningRequested).name ===
+      PROVISIONING_REQUESTED_EVENT_NAME &&
+    typeof (event as ProvisioningRequested).data === "object" &&
+    (event as ProvisioningRequested).data !== null
   );
 };
+
+export const createProvisioningRequestedEvent = (
+  blueprint: Blueprint
+): ProvisioningRequested => ({
+  name: "ProvisioningRequested",
+  data: blueprint,
+});
