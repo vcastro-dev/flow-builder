@@ -1,0 +1,16 @@
+{
+  "name": "flow-builder",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --workspaces",
+    "start": "npm run start --workspaces",
+    "install:all": "npm install"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "author": "",
+  "license": "ISC"
+}
