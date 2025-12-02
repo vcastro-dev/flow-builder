@@ -4,8 +4,10 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "npm run dev --workspaces",
-    "start": "npm run start --workspaces",
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "start:api": "npm run start --workspace=apps/api",
+    "start:web": "npm run start --workspace=apps/web",
     "install:all": "npm install"
   },
   "workspaces": [
